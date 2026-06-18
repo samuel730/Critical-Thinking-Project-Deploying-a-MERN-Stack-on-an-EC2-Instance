@@ -18,147 +18,141 @@ I started by launching an EC2 Ubuntu server and connecting to it using SSH from 
 
 ---
 
-## Backend Deployment
+## Step 1: Launching the EC2 Instance
 
-I created and configured the backend using Node.js and Express inside the server directory.
+I launched an Ubuntu EC2 instance from the AWS Management Console and verified that the instance was running successfully.
 
-I installed the required dependencies, including Express, Mongoose, CORS, and dotenv.
+### Screenshot
 
-After that, I:
+<img width="2560" height="1440" alt="Screenshot 2026-06-11 211414" src="https://github.com/user-attachments/assets/c43d7353-5faf-48fd-8c76-dfedbeed88ad" />
 
-- Built a REST API to handle employee data
-- Created routes for GET, POST, and DELETE operations
-- Connected the backend to MongoDB Atlas using a connection string stored in a .env file
-- Verified that the server was running successfully on port 5050
+<img width="2560" height="1440" alt="Screenshot 2026-06-11 211330" src="https://github.com/user-attachments/assets/fa153f00-b480-41e4-917e-29a4cf155b3c" />
 
-The backend was successfully connected to the database and responded correctly to API requests.
+<img width="2560" height="1440" alt="Screenshot 2026-06-11 211306" src="https://github.com/user-attachments/assets/c1e72c2b-36e8-447c-bea6-fef756ad787f" />
 
----
-
-## Database Setup (MongoDB Atlas)
-
-I created a MongoDB Atlas cluster and configured it as the cloud database for the project.
-
-I connected the cluster to my backend application using Mongoose.
-
-The database stores employee records with the following structure:
-
-- name
-- position
-- level
-
-The connection was tested and confirmed working during backend startup.
+<img width="1243" height="1207" alt="Screenshot 2026-06-11 211020" src="https://github.com/user-attachments/assets/fbf7334b-e8fa-4425-a693-212c4470a757" />
 
 ---
 
-## Frontend Deployment
+## Step 2: Connecting to the EC2 Instance
 
-I built the frontend using React with Vite.
+After launching the instance, I connected to it using SSH from my terminal.
 
-I configured the frontend to communicate with the backend using the EC2 public IP address instead of localhost.
+### Command Used
 
-I also exposed the frontend server to the internet by running it with:
+```bash
+ssh -i mykey.pem ubuntu@16.171.55.233
+```
 
---host 0.0.0.0
+### Screenshot
 
-This allowed the application to be accessed externally through the EC2 public IP.
-
----
-
-## Integration of Full Stack Application
-
-After both the frontend and backend were running, I connected them using HTTP requests.
-
-The frontend communicates with the backend using the following API endpoint:
-
-http://16.171.55.233:5050/employees
-
-This enabled full CRUD functionality between the user interface, backend server, and database.
+<img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/aec63bb9-0351-4ace-b56b-4aac3482e214" />
 
 ---
 
-## Challenges I Faced
+## Step 3: Creating the MongoDB Atlas Cluster
 
-During the deployment process, I encountered several issues:
+I created a MongoDB Atlas cluster and configured database access for my application.
 
-- The frontend was not initially accessible due to a missing host configuration
-- AWS security group rules were blocking external access to required ports
-- API routes were inconsistent at first (/record vs /employees)
-- The frontend was initially pointing to localhost instead of the EC2 IP address
+### Screenshot
 
----
-
-## How I Solved Them
-
-I resolved these issues by:
-
-- Updating Vite to run with --host 0.0.0.0
-- Configuring AWS security groups to allow ports 5050 and 5173
-- Standardizing backend routes to /employees
-- Replacing localhost URLs with the EC2 public IP
+<img width="2560" height="1168" alt="image" src="https://github.com/user-attachments/assets/19de981a-4577-4fff-8a7b-37f0fcca5fd5" />
 
 ---
 
-## Final Result
+## Step 4: Configuring the Environment Variables
 
-At the end of the project, I successfully deployed a working full-stack MERN application on AWS EC2.
+I created a `.env` file containing the MongoDB connection string and application configuration.
 
-The system is fully functional and accessible online.
+### Screenshot
+
+<img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/2767f866-8d9b-49e8-9191-1194f487f919" />
+
+---
+
+## Step 5: Installing Backend Dependencies
+
+I installed all required backend dependencies, including Express, Mongoose, CORS, and dotenv.
+
+### Command Used
+
+```bash
+npm install
+```
+
+### Screenshot
+
+<img width="2314" height="350" alt="image" src="https://github.com/user-attachments/assets/c044e2e9-a124-42b7-89d9-e433eb9b793e" />
 
 ---
 
-## Live Application Links
+## Step 6: Starting the Backend Server
 
-Frontend:
-http://16.171.55.233:5173
+I started the backend application and verified that it connected successfully to MongoDB Atlas.
 
-Backend API:
-http://16.171.55.233:5050/employees
+### Command Used
+
+```bash
+node index.js
+```
+
+### Screenshot
+
+<img width="2404" height="220" alt="image" src="https://github.com/user-attachments/assets/383da689-87c4-4867-bddf-a7861d21766e" />
 
 ---
+
+## Step 7: Testing the Backend API
+
+I tested the API endpoint to ensure that the server was responding correctly.
+
+### Screenshot
+
+<img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/50da0c7f-e95a-429b-880e-f324ad744240" />
+
+---
+
+## Step 8: Installing Frontend Dependencies
+
+I installed the frontend dependencies inside the React application.
+
+### Screenshot
+
+<img width="2554" height="436" alt="image" src="https://github.com/user-attachments/assets/d766935b-073b-402f-acfe-0c872dae53fe" />
+
+---
+
+## Step 9: Running the Frontend Application
+
+I started the React application using Vite and exposed it to external users.
+
+### Command Used
+
+```bash
+npm run dev -- --host 0.0.0.0
+```
+
+### Screenshot
+
+<img width="2542" height="514" alt="image" src="https://github.com/user-attachments/assets/e4b541b3-4477-4f17-b04f-3c5e03af43cc" />
+
+---
+
+## Step 10: Accessing the Application in the Browser
+
+I opened the application using the EC2 public IP address and verified that the frontend communicated successfully with the backend.
+
+### Screenshot
+
+<img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/7c08f715-8eb8-41a3-8d1e-28c1aed8037a" />
 
 ## Conclusion
 
-This project helped me understand real-world cloud deployment, backend development, frontend integration, and database connectivity.
+This project provided me with practical experience in deploying a full MERN stack application on a cloud platform. Throughout the project, I successfully launched and configured an AWS EC2 instance, deployed a Node.js and Express backend, connected the application to MongoDB Atlas, and deployed a React frontend using Vite.
 
-I was able to successfully deploy and connect all components of a full MERN stack application on a live AWS EC2 instance.
+During the deployment process, I encountered several challenges, including API route mismatches, frontend accessibility issues, and security group configuration problems. By troubleshooting these issues and implementing the necessary fixes, I gained a better understanding of cloud infrastructure, application deployment, networking, and full-stack integration.
 
----
+At the end of the project, I successfully deployed a fully functional Employee Management System that allows users to create, view, and delete employee records. The frontend, backend, and database were successfully integrated and made accessible through the EC2 public IP address.
 
-## Author
+Overall, this project strengthened my understanding of cloud computing, web application deployment, and real-world DevOps practices, while providing valuable hands-on experience with the MERN technology stack.
 
-Name: Samuel Adesanya  
-Project: MERN Stack EC2 Deployment  
-Date: June 2026
-## Screensots
-
-<img width="1243" height="1207" alt="Screenshot 2026-06-11 211020" src="https://github.com/user-attachments/assets/5be4ba6b-802a-4f47-a8c6-45e3d0af916b" />
-
-<img width="2560" height="1440" alt="Screenshot 2026-06-11 211306" src="https://github.com/user-attachments/assets/38f3056c-6dd1-4ffa-a008-0e1ec8aef3bf" />
-
-<img width="2560" height="1440" alt="Screenshot 2026-06-11 211330" src="https://github.com/user-attachments/assets/43fbef54-7b1d-4982-942a-a329a72cd343" />
-
-<img width="2560" height="1440" alt="Screenshot 2026-06-13 133419" src="https://github.com/user-attachments/assets/e3d39901-338f-4d64-971f-b2c3f56aef46" />
-
-<img width="2560" height="1440" alt="Screenshot 2026-06-12 155811" src="https://github.com/user-attachments/assets/74726012-41bc-413e-a2e6-467ebd83eb6e" />
-
-<img width="2560" height="1440" alt="Screenshot 2026-06-11 220309" src="https://github.com/user-attachments/assets/4529eda9-0fe8-4247-a1f4-7a76f4804105" />
-
-<img width="2560" height="1440" alt="Screenshot 2026-06-11 220257" src="https://github.com/user-attachments/assets/79bdfb05-a149-4d14-aecd-b21b2df47528" />
-
-<img width="2560" height="1440" alt="Screenshot 2026-06-11 220235" src="https://github.com/user-attachments/assets/5f3688ea-c1d3-401e-a7ed-25e0030a3a21" />
-
-<img width="1217" height="118" alt="Screenshot 2026-06-11 211738" src="https://github.com/user-attachments/assets/8873d12e-3f39-45e8-8fa9-dab62d22ff15" />
-
-<img width="867" height="92" alt="Screenshot 2026-06-11 211621" src="https://github.com/user-attachments/assets/8408d733-8472-440e-933c-10f27d5b6ed1" />
-
-<img width="2560" height="1440" alt="Screenshot 2026-06-11 211414" src="https://github.com/user-attachments/assets/09d5871d-4b1e-4d42-b0fc-d6529552a5d9" />
-
-<img width="2560" height="404" alt="Screenshot 2026-06-16 194622" src="https://github.com/user-attachments/assets/0e9ccbd6-f965-44fa-9b02-fb6b57811cfc" />
-
-<img width="2560" height="1440" alt="Screenshot 2026-06-16 194527" src="https://github.com/user-attachments/assets/d9a05dda-b86e-4716-92c2-275b7ea7cb55" />
-
-
-<img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/79fdfd54-3d78-4d5e-9e26-76db5673e0d7" />
-
-<img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/80992c1b-f976-4e56-bab4-cea8f0802bad" />
