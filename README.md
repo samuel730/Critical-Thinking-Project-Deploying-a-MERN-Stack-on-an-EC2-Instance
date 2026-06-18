@@ -6,3 +6,4 @@ This project demonstrates the deployment of a full-stack MERN (MongoDB, Express,
 The application developed is an Employee Management System that allows users to create, view, and delete employee records. The backend was built using Node.js and Express, the frontend using React with Vite, and MongoDB Atlas was used as the cloud database.
 
 The main focus of this project was not only to build the application but to successfully deploy and integrate all components on a live cloud server, ensuring communication between the frontend, backend, and database over the internet.
+
